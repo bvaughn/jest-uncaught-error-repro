@@ -1,1 +1,4 @@
-# jest-uncaught-error-repro
+```
+yarn install
+yarn jest
+```
