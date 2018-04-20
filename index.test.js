@@ -51,9 +51,11 @@ test("reports an error thrown by an async function", async done => {
   // NOTE Awaiting the test function would eliminate the false positive,
   // But we are trying to simulate an async function getting called indirectly,
   // (e.g. by a React component lifecycle)
+  // In which case we would be unable to directly await it.
   test();
 
-  // Make sure the warning above is logged before the test completes.
+  // Make sure the warning above is logged (and the error thrown) before the test completes.
+  // This sequencing is confirmed by the console.log() statements.
   await Promise.resolve(r => setTimeout(r, 200));
 
   // NOTE Using Jest timers has no impact on the reported behavior.
